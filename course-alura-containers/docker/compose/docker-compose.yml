@@ -1,0 +1,35 @@
+services:
+    mymongo:
+      image: mongo
+      container_name: mymongo
+      networks:
+        - minha-rede
+      ports:
+        - "27017:27017"
+
+    myredis:
+      image: redis
+      container_name: myredis
+      networks:
+        - minha-rede
+      ports:
+        - "6379:6379"
+
+    myapp:
+      image: node
+      container_name: myapp
+      networks:
+        - minha-rede
+      ports:
+        - "4000:4000"
+      working_dir: /var/www/app
+      volumes:
+        - ./app:/var/www/app
+      command: npm run dev
+      depends_on:
+        - "myredis"
+        - "mymongo"
+
+networks:
+  minha-rede:
+    driver: bridge
