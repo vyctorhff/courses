@@ -1,0 +1,6 @@
+2021/11/07 17:42:22 - http://www.google.com.br - true
+2021/11/07 17:42:22 - https://random-status-code.herokuapp.com/ - true
+2021/11/07 17:55:20 - http://www.google.com.br - true
+2021/11/07 17:55:20 - https://random-status-code.herokuapp.com/ - false
+2021/11/07 17:55:24 - http://www.google.com.br - true
+2021/11/07 17:55:25 - https://random-status-code.herokuapp.com/ - true

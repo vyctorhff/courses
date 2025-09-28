@@ -1,0 +1,1 @@
+CREATE USER usuario WITH PASSWORD '123';
