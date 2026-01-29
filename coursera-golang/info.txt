@@ -1,0 +1,208 @@
+Golang course in coursera
+
+-------------------------------------------------------------------------------
+1 Module
+
+1) Advantages
+    - Code runs fast
+    - Garbage Collection
+    - Simpler Objects(some can disagree)
+    - Concurrency is efficent and natively
+
+2) Software Translation
+    - Machine Language
+        Linguage of zeros and ones
+    - Assembly language
+        Like Machine language, but with human names
+        that help them to read
+    - High-level language
+        Every other languages
+
+3) Garbage Collection
+    - Slows down the perform, but in go just a little bit3) Garbage Collection
+    - It is a resource of interpreted language
+
+4) Object Oriented
+    - weakly object oriented
+    - do not have 'class', constructos, inheritance
+    - defination
+        -> object oriented is for code organization
+        -> a way to reuse the code easyly
+    - struct is a associate date and methons
+
+5) Concurrency
+    - Motivation
+        -> increase the perform limits
+        -> it is not possible to increase the clock, because
+            on some moment, the clock gets to hot e spend a lot to coll them
+        -> Multiple task can run in diferent core. But have to think about
+            memory shared
+        -> concurrency enables parallelism
+
+    - Focus Points of Concurrency
+        -> Management of task execution
+        -> Communication between tasks
+        -> Synchronization between tasks
+
+    - Go provides
+        -> concurrency primitives
+        -> Goroutines for concurrent tasks
+        -> 'Channels' to communicate tasks
+        -> 'Select' to synchronaze task
+
+6) Workspace
+    - Folder Struct
+        src
+        pkg -> libs
+        bin
+
+    - It is common to has one workspace for many projects
+
+    - Workspace is defined by a GOPATH or GOROOT variable
+        It has the installation
+        And the path for your workspace
+
+    - go tool
+        go build
+            will package everything inside a executable
+        go doc
+            show the documentation for a package
+
+        go fmt
+            Format your code
+
+        go get
+            find and install packages
+
+        go list
+            List all the packages installed
+
+        go run
+            Compile and execute
+
+        go test
+-------------------------------------------------------------------------------
+2 Module
+-------------------------------------------------------------------------------
+3 Modulo - Parallel Programming
+
+1) Concept
+    One two threads executing at the same time in two differents cpu
+
+2) Not always should be use it
+    Some times, the task must be executing in sequence
+
+3) Moore's Law
+    Every two years, transitions density double it
+
+4) Control de votage down makes the temparature down
+
+5) Concurrent vs parallel
+
+    Concurrent:
+        Two task are executing, but one at time
+    Parallel:
+        Two task are executing at the same time in differents
+        cpus
+
+6) Programming
+    The programer tells what CAN be execute in parallel. But exactually if will
+    be or not execute in parallel, only the go runtime will determines
+
+7) What have the process running
+    - Memory
+        -> Virtual address space
+        -> code, stack, head, shared libs
+
+    - Registers
+        -> program counter
+        -> data regs
+
+8) Operation System
+    Allow the processes to manager many processes
+    Sometimes it gives the impression of parallelism
+
+    The OS change de context of the process when it change the processes,
+    for each process must have it each context
+
+9) Threads vs Process
+    Threads are ligthweight process share some context.
+        - stack
+        - code
+        - data registers
+    One process can have many threads
+
+10) Goroutines
+    Schedules goroutines inside the OS thread
+    Like a little OS inside a single OS thread
+    Logical Processor is a mapped to a thread
+
+    Structor
+       Go Main thread(func main())
+           Logical Processor
+                Goroutines
+                    goroutines 1
+                    goroutines 2
+                    goroutines 3
+
+       With multiple cores, programer can tell to go to have many
+       Logical Processors
+
+11) Interleaving
+    It is not possible to determines if all the instructions in a thread will
+    be execute at the same time. Because the OS may stop the execution for other
+    Thread.
+
+    So every execution can be different than the previsouly, but always reach the
+    same result at the end.
+
+    In other words, the Thread execution is not deterministic. But the result of the
+    execution should be deterministic.
+
+12) Race Conditions
+    When the rsult of the Thread changes for the same input, it calls that the
+    program is not deterministic. Because the instructions is changing because
+    other threads.
+
+    This happends when there are sharing resources
+
+13) Synchronization
+    Make a thread waits for other threads.
+
+    In generall, reduce the performance of the execution. But some time, it is
+    necessary.
+
+14) Blocking Channel
+    Continously reading the channel by using the 'for' command.
+    'For' comando will finish when the channel was closed by the 'closed' command.
+    Reading from two or more channels. It is possible to use the 'select' command.
+
+15) Mutual Exclusion
+    Two or more goroutines can write in the same variable. This can provoke problems
+    as the Race Problem.
+    The concurrency problem occor at the machine level, because that instructions will
+    suffer the interleave by the OS kernel.
+
+    Mutua exclusion is when two or more goroutines cannot access at the same time in a
+    shared variable.
+
+    Correcting the problem
+        - Never write the variable at the same time
+        - Think of possibles interleaving
+        - Code segmentation
+
+16) Mutex
+    Mutext ensures mutual exclusion
+    It is a binary semaphore:
+        - UP: the varible can be use it
+        - DOWN: the varible can not
+
+17) Synchronization Initialization
+    Away to initializa all the goroutines.
+    sync.Do
+
+18) Deadlock
+    Circular dependencia of goroutines that waits forever.
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
