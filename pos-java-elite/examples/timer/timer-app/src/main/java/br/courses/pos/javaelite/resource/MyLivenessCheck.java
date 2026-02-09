@@ -1,4 +1,4 @@
-package br.courses.pos.javaelite;
+package br.courses.pos.javaelite.resource;
 
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;

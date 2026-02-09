@@ -1,4 +1,4 @@
-package br.courses.pos.javaelite;
+package br.courses.pos.javaelite.resource;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.MediaType;
 public class GreetingResource {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String hello() {
         return "Hello from Quarkus REST";
     }

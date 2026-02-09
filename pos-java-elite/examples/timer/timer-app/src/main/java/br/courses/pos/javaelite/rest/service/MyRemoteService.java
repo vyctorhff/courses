@@ -1,4 +1,4 @@
-package br.courses.pos.javaelite;
+package br.courses.pos.javaelite.rest.service;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
