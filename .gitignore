@@ -24,10 +24,15 @@ hs_err_pid*
 replay_pid*
 
 .idea/
+.vscode/
+.settings/
+.project
+
+.bin/
+bin/
 build/
 .gradle/
-.code/
-code/
+target/
 
 __pycache__/
 
