@@ -1,0 +1,15 @@
+package br.course.elita.java.server.domain.userCase.handler;
+
+import br.course.elita.java.server.domain.model.HandlerHttpResponse;
+
+public class ListHandler implements SocketHttpHandler {
+    @Override
+    public HandlerHttpResponse execute() {
+        String content = """
+                1;Fulano;
+                2;Cicrano;
+                3;Beltrano
+                """;
+        return HandlerHttpResponse.success(content);
+    }
+}
