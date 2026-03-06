@@ -9,7 +9,7 @@ public class ResolverHttpPath {
     public SocketHttpHandler resolve(String content) {
         for (PathHandlerEnum pathHandlerEnum : PathHandlerEnum.values()) {
 
-            if (content.contains(pathHandlerEnum.getPath())) {
+            if (pathHandlerEnum.isRequestValid(content)) {
                 return pathHandlerEnum.getHandler();
             }
         }
