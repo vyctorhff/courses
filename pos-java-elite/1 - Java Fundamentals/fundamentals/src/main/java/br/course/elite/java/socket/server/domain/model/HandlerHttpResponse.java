@@ -1,4 +1,4 @@
-package br.course.elita.java.server.domain.model;
+package br.course.elite.java.server.domain.model;
 
 public record HandlerHttpResponse(
         int status,

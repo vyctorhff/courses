@@ -1,8 +1,8 @@
-package br.course.elita.java.server.socket;
+package br.course.elite.java.server.socket;
 
-import br.course.elita.java.server.domain.model.HandlerHttpResponse;
-import br.course.elita.java.server.domain.userCase.ResolverHttpPath;
-import br.course.elita.java.server.domain.userCase.handler.SocketHttpHandler;
+import br.course.elite.java.server.domain.model.HandlerHttpResponse;
+import br.course.elite.java.server.domain.userCase.ResolverHttpPath;
+import br.course.elite.java.server.domain.userCase.handler.SocketHttpHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

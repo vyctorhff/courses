@@ -1,6 +1,6 @@
-package br.course.elita.java.server.domain.userCase.handler;
+package br.course.elite.java.server.domain.userCase.handler;
 
-import br.course.elita.java.server.domain.model.HandlerHttpResponse;
+import br.course.elite.java.server.domain.model.HandlerHttpResponse;
 
 public class ListHandler implements SocketHttpHandler {
     @Override
