@@ -1,4 +1,4 @@
-package br.course.elite.java.server.domain.userCase.handler;
+package br.course.elite.java.socket.server.domain.userCase.handler;
 
 public enum PathHandlerEnum {
     LIST("GET", "/list", new ListHandler()),

@@ -1,8 +1,8 @@
-package br.course.elite.java.server.socket;
+package br.course.elite.java.socket.server.socket;
 
-import br.course.elite.java.server.domain.model.HandlerHttpResponse;
-import br.course.elite.java.server.domain.userCase.ResolverHttpPath;
-import br.course.elite.java.server.domain.userCase.handler.SocketHttpHandler;
+import br.course.elite.java.socket.server.domain.model.HandlerHttpResponse;
+import br.course.elite.java.socket.server.domain.userCase.ResolverHttpPath;
+import br.course.elite.java.socket.server.domain.userCase.handler.SocketHttpHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -18,31 +18,38 @@ public class SingleThreadSocketServer {
     public static final int TOTAL_ITERATION_SOCKET = 3;
     public static final int SOCKET_PORT = 8000;
 
-    private final ResolverHttpPath resolver;
-
     public SingleThreadSocketServer() {
-        this.resolver = new ResolverHttpPath();
     }
 
     public void execute() {
         try (ServerSocket serverSocket = new ServerSocket(SOCKET_PORT)) {
             log.info("Server started at " + SOCKET_PORT);
 
-            repeat(TOTAL_ITERATION_SOCKET, serverSocket, (value) -> {
-                try (Socket socket = value.accept()) {
-                    String body = read(socket);
-
-                    SocketHttpHandler handler = resolver.resolve(body);
-                    HandlerHttpResponse response = handler.execute();
-
-                    write(socket, response);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
+            repeat(TOTAL_ITERATION_SOCKET, serverSocket, executeSocket());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Consumer<ServerSocket> executeSocket() {
+        return (value) -> {
+            ResolverHttpPath resolver = new ResolverHttpPath();
+
+            try (Socket socket = value.accept()) {
+                SocketReaderService reader = new SocketReaderService(socket);
+//                String body = read(socket);
+                String body = reader.read();
+
+                SocketHttpHandler handler = resolver.resolve(body);
+                HandlerHttpResponse response = handler.execute();
+
+                SocketWriterService writer = new SocketWriterService(socket);
+//                write(socket, response);
+                writer.write(response);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        };
     }
 
     private void repeat(int amountTimes, ServerSocket socket, Consumer<ServerSocket> consumer) {
@@ -57,7 +64,45 @@ public class SingleThreadSocketServer {
         }
     }
 
-    private String read(Socket socket) throws IOException {
+//    private String read(Socket socket) throws IOException {
+//        log.info("Reading...");
+//
+//        InputStream inputStream = socket.getInputStream();
+//        StringBuilder sb = new StringBuilder();
+//
+//        int data;
+//        do {
+//            data = inputStream.read();
+//            sb.append((char) data);
+//        } while (inputStream.available() > 0);
+//
+//        return sb.toString();
+//    }
+//
+//    private static void write(Socket socket, HandlerHttpResponse response) throws IOException {
+//        log.info("Writing...");
+//
+//        PrintStream printStream = new PrintStream(socket.getOutputStream());
+//
+//        printStream.printf("HTTP/1.1 %d %s\n", response.status(), response.info());
+//        printStream.println("Content-type: application/text; charset=UTF-8");
+//        printStream.println();
+//        printStream.println(response.body());
+//
+//        printStream.close();
+//    }
+}
+
+@Slf4j
+class SocketReaderService {
+
+    private Socket socket;
+
+    public SocketReaderService(Socket socket) {
+        this.socket = socket;
+    }
+
+    public String read() throws IOException {
         log.info("Reading...");
 
         InputStream inputStream = socket.getInputStream();
@@ -71,8 +116,18 @@ public class SingleThreadSocketServer {
 
         return sb.toString();
     }
+}
 
-    private static void write(Socket socket, HandlerHttpResponse response) throws IOException {
+@Slf4j
+class SocketWriterService {
+
+    private Socket socket;
+
+    public SocketWriterService(Socket socket) {
+        this.socket = socket;
+    }
+
+    public void write(HandlerHttpResponse response) throws IOException {
         log.info("Writing...");
 
         PrintStream printStream = new PrintStream(socket.getOutputStream());

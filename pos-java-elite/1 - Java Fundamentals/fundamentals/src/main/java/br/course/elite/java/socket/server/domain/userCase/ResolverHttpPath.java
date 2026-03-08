@@ -1,8 +1,8 @@
-package br.course.elite.java.server.domain.userCase;
+package br.course.elite.java.socket.server.domain.userCase;
 
-import br.course.elite.java.server.domain.userCase.handler.NotFountHandler;
-import br.course.elite.java.server.domain.userCase.handler.PathHandlerEnum;
-import br.course.elite.java.server.domain.userCase.handler.SocketHttpHandler;
+import br.course.elite.java.socket.server.domain.userCase.handler.NotFountHandler;
+import br.course.elite.java.socket.server.domain.userCase.handler.PathHandlerEnum;
+import br.course.elite.java.socket.server.domain.userCase.handler.SocketHttpHandler;
 
 public class ResolverHttpPath {
 

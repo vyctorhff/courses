@@ -1,6 +1,6 @@
-package br.course.elita.java;
+package br.course.elite.java;
 
-import br.course.elita.java.server.socket.SingleThreadSocketServer;
+import br.course.elite.java.socket.server.socket.SingleThreadSocketServer;
 
 public class Application {
 
