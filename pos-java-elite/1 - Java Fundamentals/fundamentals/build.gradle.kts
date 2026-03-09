@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation("org.slf4j:slf4j-simple:2.0.17")
-    runtimeOnly("com.mysql:mysql-connector-j")
+//    runtimeOnly("com.mysql:mysql-connector-j")
 
     implementation("org.projectlombok:lombok:1.18.42")
     annotationProcessor("org.projectlombok:lombok:1.18.42")
