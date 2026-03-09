@@ -5,6 +5,7 @@ import br.course.elite.java.socket.server.socket.SingleThreadSocketServer;
 public class Application {
 
     static void main() {
-        new SingleThreadSocketServer().execute();
+//        new SingleThreadSocketServer().execute();
+
     }
 }

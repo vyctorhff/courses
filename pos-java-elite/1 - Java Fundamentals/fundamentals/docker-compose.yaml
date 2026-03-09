@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  mysql-pos-elite:
+    image: mysql:8.0.43-debian
+    container_name: mysql-pos-elite
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: data_root_pass_123
+      MYSQL_DATABASE: mysql-pos-elite
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      TZ: 'UTC'
+    volumes:
+      - mysql-pos-elite-storage:/var/lib/mysql
+      - ./db-init:/docker-entrypoint-initdb.d
+    networks:
+      - pos-elite-network
+
+  phpmyadmin-post-elite:
+    image: phpmyadmin
+    container_name: phpmyadmin-post-elite
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+    networks:
+      - pos-elite-network
+    depends_on:
+      - mysql-pos-elite
+
+volumes:
+  mysql-pos-elite-storage:
+    driver: local
+
+networks:
+  pos-elite-network:
+    driver: bridge
