@@ -1,4 +1,4 @@
-package br.course.elite;
+package br.course.elite.resources;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

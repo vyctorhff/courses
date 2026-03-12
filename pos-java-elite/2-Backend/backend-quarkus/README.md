@@ -19,6 +19,13 @@ Todos endpoinst separados entre
 - endpoints do quarkus
 - endpoints da aplicação
 
+
+## Add libs
+
+```shell script
+./mvnw quarkus:add-extension -Dextensions="quarkus-rest-client"
+```
+
 ## Quarkus Commands
 
 ```shell script
