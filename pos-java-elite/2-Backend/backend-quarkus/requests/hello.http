@@ -1,0 +1,11 @@
+# Study more
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+# Shortcut:
+#     Last Request: Ctrl + Alt + K
+
+### Variables 
+@API_URL = http://localhost:8080
+
+############################################################################
+### GET simples html with hello
+GET {{API_URL}}/hello HTTP/1.1

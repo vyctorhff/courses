@@ -1,0 +1,5 @@
+@API_URL = http://localhost:8080/metrics
+
+############################################################################
+### GET simples html with hello
+GET {{API_URL}}/pessoa HTTP/1.1
