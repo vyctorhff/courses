@@ -47,3 +47,12 @@ Todos endpoinst separados entre
 ```shell script
 ./mvnw package -Dnative -Dquarkus.native.container-build=true
 ```
+
+## Quarkus SmallRye
+
+SmallRye é a implementação da especificação do microprofile e outras implementações alé do microprofile
+
+## Panache
+
+Específico para quarkus Facilitar o uso do hibernate(jackarta persistence, antigo jpa)
+É recomendado para utilizadas simples
