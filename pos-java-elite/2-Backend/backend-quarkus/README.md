@@ -56,3 +56,21 @@ SmallRye é a implementação da especificação do microprofile e outras implem
 
 Específico para quarkus Facilitar o uso do hibernate(jackarta persistence, antigo jpa)
 É recomendado para utilizadas simples
+
+## Opentelemetry
+
+Permitir expor os dados das requisições para uma ferramenta
+No caso será usado o Jaeger UI
+
+## Micrometer(quarkus-micrometer)
+
+Framework para coleta de dados
+
+## Quarkus Prometheus(quarkus-micrometer-registry-prometheus)
+
+Habilitando saida das metricas para o prometheus
+Tem um endpoint que mostrar todas as metricas em (micrometer metris - prometheus)
+
+## VSCode plugin
+
+REST Client
