@@ -1,0 +1,5 @@
+@API_URL = http://localhost:8080/kafka
+
+############################################################################
+### GET simples html with hello
+GET {{API_URL}}/hello HTTP/1.1

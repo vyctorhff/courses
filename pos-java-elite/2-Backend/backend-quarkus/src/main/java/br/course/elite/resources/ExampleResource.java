@@ -28,6 +28,12 @@ public class ExampleResource {
         return count;
     }
 
+    @GET
+    @Path("/{number}")
+    public int get3(Integer number) {
+        return number;
+    }
+
     @POST
     public void post() {
         count++;
