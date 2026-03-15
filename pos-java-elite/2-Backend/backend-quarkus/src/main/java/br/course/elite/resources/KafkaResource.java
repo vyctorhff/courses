@@ -1,8 +1,11 @@
 package br.course.elite.resources;
 
+import java.time.LocalDateTime;
+
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 
+import br.course.elite.domain.StarWarEvent;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -14,10 +17,20 @@ public class KafkaResource {
     @Channel("topicHello")
     private Emitter<String> emitterHello;
 
+    @Inject
+    @Channel("topicStarWar")
+    private Emitter<StarWarEvent> emitterStarWar;
 
     @GET
     @Path("/hello")
     public void hello() {
         emitterHello.send("Hello world with kafka with quarkus");
+    }
+
+    @GET
+    @Path("/object")
+    public void object() {
+        StarWarEvent event = new StarWarEvent("darth vader", LocalDateTime.now());
+        emitterStarWar.send(event);
     }
 }
