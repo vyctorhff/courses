@@ -11,6 +11,14 @@ services:
       COLLECTOR_OTLP_ENABLED: 'true'
     networks:
       - pos-elite-network
+  
+  kafka:
+    image: apache/kafka:4.1.0
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    networks:
+      - pos-elite-network
 
 networks:
   pos-elite-network:
