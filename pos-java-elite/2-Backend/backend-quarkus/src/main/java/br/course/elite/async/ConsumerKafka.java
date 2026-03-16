@@ -9,7 +9,7 @@ import br.course.elite.domain.StarWarEvent;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class ConsumerHello {
+public class ConsumerKafka {
     
     @Incoming("topicHello")
     public CompletionStage<Void> consumeHello(Message<String> message) {
