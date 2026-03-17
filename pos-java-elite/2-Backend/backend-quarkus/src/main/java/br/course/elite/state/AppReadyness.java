@@ -8,7 +8,7 @@ import org.eclipse.microprofile.health.Readiness;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import br.course.elite.domain.StarWarFilm;
-import br.course.elite.service.FaultToleranceService;
+import br.course.elite.rest.FaultToleranceService;
 
 /**
  * Informa se a aplicação está pronta para receber requisições

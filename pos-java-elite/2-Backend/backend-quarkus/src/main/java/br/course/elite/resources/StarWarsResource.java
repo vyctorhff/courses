@@ -5,7 +5,7 @@ import java.util.List;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import br.course.elite.domain.StarWarFilm;
-import br.course.elite.service.StarWarService;
+import br.course.elite.rest.StarWarService;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;

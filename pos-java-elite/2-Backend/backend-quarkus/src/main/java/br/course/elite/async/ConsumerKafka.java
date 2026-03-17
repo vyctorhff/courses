@@ -29,6 +29,7 @@ public class ConsumerKafka {
 
         StarWarEvent event = message.getPayload();
         System.out.println(event);
+        
         return message.ack();
     }
 }
