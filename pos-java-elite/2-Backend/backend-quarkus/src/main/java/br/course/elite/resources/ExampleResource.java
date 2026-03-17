@@ -1,6 +1,11 @@
 package br.course.elite.resources;
 
-import jakarta.decorator.Delegate;
+import org.jboss.resteasy.reactive.RestCookie;
+import org.jboss.resteasy.reactive.RestHeader;
+import org.jboss.resteasy.reactive.RestPath;
+import org.jboss.resteasy.reactive.RestQuery;
+
+import br.course.elite.domain.StarWarFan;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -32,12 +37,36 @@ public class ExampleResource {
     @GET
     @Path("/{number}")
     public Response get3(Integer number) {
-        return Response.ok(count).build();
+        return Response.ok(number).build();
     }
 
     @POST
-    public void post() {
+    public Response post() {
         count++;
+        return Response.ok().build();
+    }
+
+    @POST
+    @Path("/object")
+    public Response post(StarWarFan fan) {
+        System.out.println(fan);
+        return Response.ok().entity("All Ok").build();
+    }
+
+    @POST
+    @Path("/cheeses/{type}")
+    public String allParams(@RestPath String type,
+                            @RestQuery String age,
+                            @RestCookie String level,
+                            @RestCookie String created,
+                            @RestHeader("X-Cheese-Secret-Handshake")
+                            String secretHandshake
+                        ) {
+        return type + "/" + 
+            age + "/" + 
+            level + "/" +
+            created + "/" + 
+            secretHandshake + "/";
     }
 
     @PUT

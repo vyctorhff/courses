@@ -1,0 +1,56 @@
+
+@API_URL = http://localhost:8080/examples
+
+############################################################################
+# GET
+GET {{API_URL}}/ HTTP/1.1
+
+############################################################################
+# GET
+GET {{API_URL}}/get2 HTTP/1.1
+
+
+############################################################################
+# GET
+GET {{API_URL}}/{{$randomInt 10 100}} HTTP/1.1
+
+
+############################################################################
+# POST
+POST {{API_URL}}/ HTTP/1.1
+Content-Type: application/json
+
+
+############################################################################
+# POST
+POST {{API_URL}}/object HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "victor hugo",
+    "titleFavoriteFilm": "III"
+}
+
+############################################################################
+# PUT
+PUT {{API_URL}}/ HTTP/1.1
+Content-Type: application/json
+
+
+############################################################################
+# POST
+POST {{API_URL}}/cheeses/tipoX?age=matured HTTP/1.1
+Content-Type: application/json
+Cookie: level=hardcore;created={{$datetime iso8601}}
+X-Cheese-Secret-Handshake: fist-bump
+
+smell=strong
+
+
+############################################################################
+# DELETE
+DELETE {{API_URL}}/ HTTP/1.1
+Content-Type: application/json
+
+
+############################################################################

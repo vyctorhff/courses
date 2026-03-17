@@ -7,5 +7,5 @@
 @API_URL = http://localhost:8080
 
 ############################################################################
-### GET simples html with hello
+# GET simples html with hello
 GET {{API_URL}}/hello HTTP/1.1
