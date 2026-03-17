@@ -9,6 +9,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/examples")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -30,8 +31,8 @@ public class ExampleResource {
 
     @GET
     @Path("/{number}")
-    public int get3(Integer number) {
-        return number;
+    public Response get3(Integer number) {
+        return Response.ok(count).build();
     }
 
     @POST
@@ -40,12 +41,16 @@ public class ExampleResource {
     }
 
     @PUT
-    public void put() {
+    public Response put() {
         count++;
+        return Response.accepted().build();
     }
 
     @DELETE
-    public void delete() {
+    public Response delete() {
         count--;
+        return Response
+            .status(Response.Status.ACCEPTED)
+            .build();
     }
 }
