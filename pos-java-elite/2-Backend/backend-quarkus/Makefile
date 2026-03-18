@@ -9,3 +9,6 @@ add:
 
 clean:
 	./mvnw clean
+
+test:
+	./mvnw quarkus:test

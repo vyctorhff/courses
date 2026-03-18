@@ -55,18 +55,18 @@ public class ExampleResource {
 
     @POST
     @Path("/cheeses/{type}")
-    public String allParams(@RestPath String type,
-                            @RestQuery String age,
-                            @RestCookie String level,
-                            @RestCookie String created,
-                            @RestHeader("X-Cheese-Secret-Handshake")
-                            String secretHandshake
-                        ) {
+    public String allParams(
+        @RestPath String type,
+        @RestQuery String age,
+        @RestCookie String level,
+        @RestCookie String created,
+        @RestHeader("X-Cheese-Secret") String secret
+    ) {
         return type + "/" + 
             age + "/" + 
             level + "/" +
             created + "/" + 
-            secretHandshake + "/";
+            secret + "/";
     }
 
     @PUT
