@@ -1,4 +1,4 @@
-package br.course.elite;
+package br.course.elite.resources;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;

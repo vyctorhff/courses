@@ -1,4 +1,4 @@
-package br.course.elite;
+package br.course.elite.resources;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package br.course.elite;
+package br.course.elite.resources;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
