@@ -8,6 +8,7 @@ import io.quarkus.test.junit.QuarkusTest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Mockito.when;
 
 @QuarkusTest
 public class HelloResourceTest {
@@ -28,14 +29,15 @@ public class HelloResourceTest {
 
     @Test
     void testHelloWithService() {
+        String serviceReturn = "Hello in service";
+
+        when(service.getHello())
+            .thenReturn(serviceReturn);
+        
         given()
             .when().get(ROOT_PATH + "/service")
             .then()
                 .statusCode(200)
-                .body(is("Hello in service"));
-    }
-
-    @Test
-    void testHelloWithService2() {
+                .body(is(serviceReturn));
     }
 }
