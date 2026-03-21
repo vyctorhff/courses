@@ -1,13 +1,11 @@
 package br.course.elite.async;
 
-import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
 
 import br.course.elite.domain.StarWarEvent;
-import io.smallrye.reactive.messaging.kafka.api.IncomingKafkaRecordMetadata;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
@@ -30,14 +28,14 @@ public class ConsumerKafka {
         StarWarEvent event = message.getPayload();
         System.out.println(event);
 
-        Optional<IncomingKafkaRecordMetadata<String, String>> metadataOpt = message.getMetadata(IncomingKafkaRecordMetadata.class);
-        if (metadataOpt.isPresent()) {
-            IncomingKafkaRecordMetadata<String, String> metadata = metadataOpt.get();
+        // Optional<IncomingKafkaRecordMetadata<String, String>> metadataOpt = message.getMetadata(IncomingKafkaRecordMetadata.class);
+        // if (metadataOpt.isPresent()) {
+        //     IncomingKafkaRecordMetadata<String, String> metadata = metadataOpt.get();
 
-            String key = (String) metadata.getKey();
-            String topic = (String) metadata.getTopic();
-            System.out.printf("Key: %s - Topic: %s \n", key, topic);
-        }
+        //     String key = (String) metadata.getKey();
+        //     String topic = (String) metadata.getTopic();
+        //     System.out.printf("Key: %s - Topic: %s \n", key, topic);
+        // }
         
         return message.ack();
     }
