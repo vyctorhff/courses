@@ -10,3 +10,15 @@ export const Condicional: FC<{ name: string, cond: boolean }> = (props) => {
         </p>
     </>);
 };
+
+export const Condicional2: FC<{ cond: boolean }> = (props) => {
+    if (props.cond) {
+        return (<>
+            <p>With if: false</p>
+        </>)
+    }
+
+    return (<>
+        <p>With if: false</p>
+    </>);
+};
