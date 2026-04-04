@@ -18,14 +18,19 @@ export const ArgumentComp2: FC<{ person: { name: string }, size: number }> = (pr
 
 
 type ArgumentModel = {
-    person: { name: string };
-    size: number
+    person: { name: string },
+    size: number,
+    list: string[],
+    funCallBack: (item:number) => void,
 }
+
 // simplificação sem o return
-export const ArgumentComp3: FC<ArgumentModel> = ({ person, size}) => (
+export const ArgumentComp3: FC<ArgumentModel> = ({ person, size, list, funCallBack}) => (
     <>
         <h4>ArgumentComp3</h4>
-        <p>Person: {person.name}</p>
-        <span>Size: {size}</span>
+        <span>Person: {person.name}</span><br/>
+        <span>Size: {size}</span><br/>
+        <span>List: {list}</span>
+        {funCallBack(2)}
     </>
 );

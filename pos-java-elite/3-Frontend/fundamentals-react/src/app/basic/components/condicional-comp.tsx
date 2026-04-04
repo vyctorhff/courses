@@ -14,11 +14,19 @@ export const Condicional: FC<{ name: string, cond: boolean }> = (props) => {
 export const Condicional2: FC<{ cond: boolean }> = (props) => {
     if (props.cond) {
         return (<>
-            <p>With if: false</p>
+            <p>With if: true</p>
         </>)
     }
 
     return (<>
         <p>With if: false</p>
     </>);
+};
+
+export const Condicional3: FC<{ cond: boolean }> = ({ cond }) => {
+    return (<>
+        <h4>Condicional 3</h4>
+        { cond && <p>With if: true</p>}
+        { !cond && <p>With if: false</p>}
+    </>)
 };

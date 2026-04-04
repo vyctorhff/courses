@@ -9,7 +9,7 @@ const people = [
 ];
 
 export const IteratorSimple: FC<{}> = (props) => {
-    const list = people.map(item => <li>{item}</li>)
+    const list = people.map((item, index) => <li key={`people1-${index}`}>{item}</li>)
     return <ul>{list}</ul>;
 };
 
