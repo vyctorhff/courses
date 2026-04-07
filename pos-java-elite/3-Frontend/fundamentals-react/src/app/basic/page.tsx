@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArgumentComp, ArgumentComp2, ArgumentComp3 } from "./components/arguments-comp";
 import { Condicional, Condicional2, Condicional3 } from "./components/condicional-comp";
 import { Event1 } from "./components/events-comp";
@@ -10,8 +11,9 @@ export default function Basic() {
 
   return (<>
     <h1>Fundametals</h1>
-
+    <Link href="/">Back</Link>
     <hr/>
+    
     <h2>Components</h2>
     <HelloComp/>
     <ArgumentComp name="fulano"/>
@@ -33,5 +35,6 @@ export default function Basic() {
 
     <h2>Events</h2>
     <Event1/>
+    <hr/>
   </>);
 }
