@@ -25,3 +25,7 @@ npm run lint
 npm run build
 npm run start
 ```
+
+## Plugins Browser
+
+add React Developer Tools plugin(chrome, firefox etc)
