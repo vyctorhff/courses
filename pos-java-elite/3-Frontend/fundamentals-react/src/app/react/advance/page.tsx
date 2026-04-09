@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Suspense1 } from "./components/suspense";
 import { DelayService } from "@/app/services/delay.service";
+import { HookCustom, HookEffect, HookRef } from "./components/hooks";
 
 export default async function Page() {
     const prom2 = new DelayService().getStringWithDelay("hello suspense!");
@@ -17,9 +18,9 @@ export default async function Page() {
         <hr/>
 
         <h2>Hook</h2>
-        <hr/>
-
-        <h2>Hook</h2>
+        <HookEffect/>
+        <HookCustom/>
+        <HookRef/>
         <hr/>
     </>);
 }

@@ -27,6 +27,11 @@ import { FC, useEffect, useState } from "react";
  * Clico de vida e hooks
  * 
  * No Next.JS precisa marcar como 'use client';
+ * 
+ * Ciclo de vida de um componente react
+ *   - Criação
+ *   - Atualizado
+ *   - Destruição
  */
 
 export const LifeCycle: FC = () => {
