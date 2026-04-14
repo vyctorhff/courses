@@ -5,6 +5,8 @@ import { Event1 } from "./components/events-comp";
 import { Iterator2, IteratorSimple } from "./components/for-comp";
 import { HelloComp } from "./components/hello-comp";
 
+import "./style.css";
+
 export default function Basic() {
 
   const callBack = (item:number) => console.log(`In Basic comp: ${2 * item}`);
@@ -33,7 +35,7 @@ export default function Basic() {
     <Iterator2/>
     <hr/>
 
-    <h2>Events</h2>
+    <h2 className="red">Events</h2>
     <Event1/>
     <hr/>
   </>);

@@ -98,3 +98,11 @@ export const HookRef:FC = () => {
         <input ref={inputRef} onChange={(e) => setSS(true)}/>
     </>);
 };
+
+
+// ##################################################################################
+// useMen + useCallback
+/**
+ * Usado quando há métodos ou chamada que gastam muito recurso de memória ou processamento.
+ * Neste casos, é usado para evitar repetição de chamadas
+ */
