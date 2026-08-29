@@ -1,0 +1,10 @@
+{
+    "java.jdt.ls.java.home": "C:\\Users\\VictorHugoFerreirade\\Documents\\dev\\java\\openJdk-25",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-25",
+            "path": "C:\\Users\\VictorHugoFerreirade\\Documents\\dev\\java\\openJdk-25",
+            "default": true
+        }
+    ],
+}

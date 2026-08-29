@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "name": "Main - cotuba",
+            "projectName": "cotuba",
+            "mainClass": "br.com.unipds.Main",
+            "args": [
+                "-d",
+                "../apostila-design"
+            ]
+        }
+    ]
+}
