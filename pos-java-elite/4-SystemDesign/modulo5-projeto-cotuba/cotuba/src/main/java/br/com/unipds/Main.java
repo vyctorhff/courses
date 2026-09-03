@@ -11,6 +11,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
+import br.com.unipds.command.domain.CommandInputValues;
+import br.com.unipds.command.service.CreateInputCommandService;
 import com.itextpdf.kernel.pdf.PdfOutline;
 import com.itextpdf.kernel.pdf.navigation.PdfExplicitDestination;
 import nl.siegmann.epublib.domain.*;
@@ -18,8 +20,6 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.commonmark.node.AbstractVisitor;
 import org.commonmark.node.Heading;
@@ -37,98 +37,55 @@ import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.properties.AreaBreakType;
 
+import br.com.unipds.command.domain.CommandOutputList;
+import br.com.unipds.command.exceptions.CommandExeception;
+import br.com.unipds.command.options.AvailableOption;
+import br.com.unipds.command.options.OptionsFactory;
+import br.com.unipds.command.service.CommandExecutorService;
 import nl.siegmann.epublib.epub.EpubWriter;
 import nl.siegmann.epublib.service.MediatypeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
 
+    public static final int EXIT_CODE_SUCCESS = 0;
+    public static final int EXIT_CODE_ERROR = 1;
+
+    private final Logger logger = LoggerFactory.getLogger(Main.class);
+
     void main(String[] args) {
         int exitCode = executar(args);
-        if (exitCode != 0) {
+        if (exitCode != EXIT_CODE_SUCCESS) {
             System.exit(exitCode);
         }
     }
 
     int executar(String[] args) {
-        var options = new Options();
-
-        var opcaoDeDiretorioDosMD = new Option("d", "dir", true,
-                "Diretório que contém os arquivos md. Default: diretório atual.");
-        options.addOption(opcaoDeDiretorioDosMD);
-
-        var opcaoDeFormatoDoEbook = new Option("f", "format", true,
-                "Formato de saída do ebook. Pode ser: pdf ou epub. Default: pdf");
-        options.addOption(opcaoDeFormatoDoEbook);
-
-        var opcaoDeArquivoDeSaida = new Option("o", "output", true,
-                "Arquivo de saída do ebook. Default: book.{formato}.");
-        options.addOption(opcaoDeArquivoDeSaida);
-
-        var opcaoModoVerboso = new Option("v", "verbose", false,
-                "Habilita modo verboso.");
-        options.addOption(opcaoModoVerboso);
-
-        CommandLineParser cmdParser = new DefaultParser();
-        var ajuda = new HelpFormatter();
-        CommandLine cmd;
-
+        CommandOutputList commandOutputList;
         try {
-            cmd = cmdParser.parse(options, args);
-        } catch (ParseException e) {
+            var commandExecutor = new CommandExecutorService(new OptionsFactory());
+            commandOutputList = commandExecutor.execute(args);
+        } catch (CommandExeception e) {
             System.err.println(e.getMessage());
-            ajuda.printHelp("cotuba", options);
-            return 1;
+            return EXIT_CODE_ERROR;
         }
 
-        Path diretorioDosMD;
-        String formato;
-        Path arquivoDeSaida;
-        boolean modoVerboso = false;
+        var createInputs = new CreateInputCommandService();
+        var commandInputValues = createInputs.create(commandOutputList);
+
+        Path diretorioDosMD = commandInputValues.source();
+        String formato = commandInputValues.fileFormat();
+        Path arquivoDeSaida = commandInputValues.fileName();
+        boolean modoVerboso = commandInputValues.verboseMode();
 
         try {
-
-            String nomeDoDiretorioDosMD = cmd.getOptionValue("dir");
-
-            if (nomeDoDiretorioDosMD != null) {
-                diretorioDosMD = Paths.get(nomeDoDiretorioDosMD);
-                if (!Files.isDirectory(diretorioDosMD)) {
-                    throw new IllegalArgumentException(nomeDoDiretorioDosMD + " não é um diretório.");
-                }
-            } else {
-                Path diretorioAtual = Paths.get("");
-                diretorioDosMD = diretorioAtual;
-            }
-
-            String nomeDoFormatoDoEbook = cmd.getOptionValue("format");
-
-            if (nomeDoFormatoDoEbook != null) {
-                formato = nomeDoFormatoDoEbook.toLowerCase();
-            } else {
-                formato = "pdf";
-            }
-
-            String nomeDoArquivoDeSaidaDoEbook = cmd.getOptionValue("output");
-            if (nomeDoArquivoDeSaidaDoEbook != null) {
-                arquivoDeSaida = Paths.get(nomeDoArquivoDeSaidaDoEbook);
-            } else {
-                arquivoDeSaida = Paths.get("book." + formato.toLowerCase());
-            }
-            if (Files.isDirectory(arquivoDeSaida)) {
-                // deleta arquivos do diretório recursivamente
-                Files.walk(arquivoDeSaida).sorted(Comparator.reverseOrder())
-                        .map(Path::toFile).forEach(File::delete);
-            } else {
-                Files.deleteIfExists(arquivoDeSaida);
-            }
-
-            modoVerboso = cmd.hasOption("verbose");
-
             if ("pdf".equals(formato)) {
                 try (var writer = new PdfWriter(Files.newOutputStream(arquivoDeSaida));
                      var pdf = new PdfDocument(writer);
                      var pdfDocument = new Document(pdf)) {
 
-                    //TODO: definir título e autor para o livro
+                    // TODO: definir título e autor para o livro
                     pdf.getDocumentInfo().setTitle("Livro");
                     pdf.getDocumentInfo().setAuthor("Autor");
 
@@ -202,6 +159,7 @@ public class Main {
                     }
 
                 } catch (Exception ex) {
+                    System.err.println(ex.getMessage());
                     throw new IllegalStateException("Erro ao gerar PDF: " + arquivoDeSaida.toAbsolutePath(), ex);
                 }
 
@@ -297,17 +255,15 @@ public class Main {
                 throw new IllegalArgumentException("Formato do ebook inválido: " + formato);
             }
 
-            System.out.println("Arquivo gerado com sucesso: " + arquivoDeSaida);
-            return 0;
+            logger.info("Arquivo gerado com sucesso: {}", arquivoDeSaida);
+            return EXIT_CODE_SUCCESS;
 
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             if (modoVerboso) {
-                System.err.println();
-                ex.printStackTrace();
+                logger.error(ex.getMessage(), ex);
             }
-            return 1;
+            return EXIT_CODE_ERROR;
         }
     }
-
 }
