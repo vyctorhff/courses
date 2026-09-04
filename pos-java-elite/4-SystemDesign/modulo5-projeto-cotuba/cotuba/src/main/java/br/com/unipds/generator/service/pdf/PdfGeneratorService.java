@@ -5,6 +5,7 @@ import br.com.unipds.generator.domain.FileType;
 import br.com.unipds.generator.exceptions.GeneratorException;
 import br.com.unipds.generator.service.GeneratorBookFile;
 import br.com.unipds.generator.service.HeadingVisitor;
+import br.com.unipds.generator.service.ParseInputListService;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfOutline;
@@ -21,19 +22,15 @@ import org.commonmark.renderer.html.HtmlRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.PathMatcher;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class PdfGeneratorService implements GeneratorBookFile {
 
     private final Logger logger = LoggerFactory.getLogger(PdfGeneratorService.class);
 
-    private FileType type = FileType.PDF;
+    private final FileType type = FileType.PDF;
 
     @Override
     public boolean canProcess(FileType fileType) {
@@ -44,37 +41,23 @@ public class PdfGeneratorService implements GeneratorBookFile {
     public void process(CommandInputValues commandInputValues) throws GeneratorException {
         logger.info("Processing {}", type);
 
-        Path diretorioDosMD = commandInputValues.source();
-        Path arquivoDeSaida = commandInputValues.fileName();
+        Path sourceDir = commandInputValues.sourceDir();
+        Path outputDir = commandInputValues.outputDir();
 
-        try (var writer = new PdfWriter(Files.newOutputStream(arquivoDeSaida));
+        try (var writer = new PdfWriter(Files.newOutputStream(outputDir));
              var pdf = new PdfDocument(writer);
              var pdfDocument = new Document(pdf)) {
 
             setAuthorAndTitle(pdf);
 
-            PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**/*.md");
-            try (Stream<Path> streamMDs = Files.list(diretorioDosMD)) {
-                List<Path> arquivosMD = streamMDs
-                        .filter(matcher::matches)
-                        .sorted()
-                        .toList();
-
-                if (arquivosMD.isEmpty()) {
-                    throw new IllegalStateException("Não foram encontrados capítulos (arquivos .md) no diretório: " + diretorioDosMD.toAbsolutePath());
-                }
-
-                arquivosMD.forEach(arquivoMD -> {
-                    Node document = createDocument(arquivoMD);
-                    addContentToPdf(arquivoMD, pdf, document, pdfDocument);
-                });
-            } catch (IOException ex) {
-                throw new IllegalStateException("Erro tentando encontrar arquivos .md em " + diretorioDosMD.toAbsolutePath(), ex);
-            }
-
+            var parserInputList = new ParseInputListService();
+            parserInputList.process(sourceDir, pathMD -> {
+                Node document = createDocument(pathMD);
+                addContentToPdf(pathMD, pdf, document, pdfDocument);
+            });
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
-            throw new IllegalStateException("Erro ao gerar PDF: " + arquivoDeSaida.toAbsolutePath(), ex);
+            throw new IllegalStateException("Erro ao gerar PDF: " + outputDir.toAbsolutePath(), ex);
         }
     }
 

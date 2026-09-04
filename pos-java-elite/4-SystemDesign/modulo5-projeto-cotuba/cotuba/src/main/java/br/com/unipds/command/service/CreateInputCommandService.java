@@ -15,11 +15,11 @@ public class CreateInputCommandService {
     private final Logger logger = LoggerFactory.getLogger(CreateInputCommandService.class);
 
     public CommandInputValues create(CommandOutputList list) {
-        Path source = createSourceDirectory(list);
         String fileFormat = createFormart(list);
-
-        Path fileName = createFileOutputName(list, fileFormat);
         boolean verboseMode = list.hasOption(AvailableOption.VERBOSE);
+
+        Path source = createSourceDirectory(list);
+        Path fileName = createFileOutputName(list, fileFormat);
 
         return new CommandInputValues(source, fileFormat, fileName, verboseMode);
     }

@@ -42,17 +42,13 @@ public class Main {
         var commandInputValues = new CreateInputCommandService()
                 .create(commandOutputList);
 
-        List<GeneratorBookFile> generators = List.of(
-                new PdfGeneratorService(),
-                new EpubGeneratorService()
-        );
         try {
             var fileType = FileType.create(commandInputValues.fileFormat());
-            generators.stream()
+            getGeneratorBookFiles().stream()
                     .filter(generator -> generator.canProcess(fileType))
                     .forEach(generator -> generator.process(commandInputValues));
 
-            logger.info("Arquivo gerado com sucesso: {}", commandInputValues.fileName());
+            logger.info("Arquivo gerado com sucesso: {}", commandInputValues.outputDir());
             return EXIT_CODE_SUCCESS;
 
         } catch (Exception ex) {
@@ -63,5 +59,13 @@ public class Main {
             }
             return EXIT_CODE_ERROR;
         }
+    }
+
+    private static List<GeneratorBookFile> getGeneratorBookFiles() {
+        List<GeneratorBookFile> generators = List.of(
+                new PdfGeneratorService(),
+                new EpubGeneratorService()
+        );
+        return generators;
     }
 }

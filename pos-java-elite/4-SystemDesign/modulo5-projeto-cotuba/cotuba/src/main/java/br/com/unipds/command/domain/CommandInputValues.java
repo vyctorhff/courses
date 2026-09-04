@@ -3,9 +3,9 @@ package br.com.unipds.command.domain;
 import java.nio.file.Path;
 
 public record CommandInputValues (
-        Path source,
+        Path sourceDir,
         String fileFormat,
-        Path fileName,
+        Path outputDir,
         boolean verboseMode
 ) {
 }
