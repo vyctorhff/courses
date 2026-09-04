@@ -1,8 +1,10 @@
 package br.com.unipds.command.service;
 
 import br.com.unipds.command.domain.CommandInputValues;
+import br.com.unipds.command.domain.CommandOutput;
 import br.com.unipds.command.domain.CommandOutputList;
 import br.com.unipds.command.options.AvailableOption;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,40 +23,42 @@ public class CreateInputCommandService {
         Path source = createSourceDirectory(list);
         Path fileName = createFileOutputName(list, fileFormat);
 
+        logger.info("Inputs converted");
         return new CommandInputValues(source, fileFormat, fileName, verboseMode);
     }
 
     private static Path createFileOutputName(CommandOutputList list, String formato) {
-        String nomeDoArquivoDeSaidaDoEbook = list.getOptionValueByLongName(AvailableOption.OUTPUT);
-        if (nomeDoArquivoDeSaidaDoEbook != null) {
-            return Paths.get(nomeDoArquivoDeSaidaDoEbook);
-        } else {
-            return Paths.get("book." + formato.toLowerCase());
+        CommandOutput commandOutput = list.getOptionValueByLongName(AvailableOption.OUTPUT);
+
+        if (commandOutput.hasLongNameValue()) {
+            return Paths.get(commandOutput.output());
         }
+
+        return Paths.get("book." + formato.toLowerCase());
     }
 
     private static String createFormart(CommandOutputList list) {
-        String nomeDoFormatoDoEbook = list.getOptionValueByLongName(AvailableOption.FORMAT);
-        String formato;
-        if (nomeDoFormatoDoEbook != null) {
-            formato = nomeDoFormatoDoEbook.toLowerCase();
-        } else {
-            formato = "pdf";
+        CommandOutput commandOutput = list.getOptionValueByLongName(AvailableOption.FORMAT);
+
+        if (commandOutput.hasLongNameValue()) {
+            return commandOutput.output().toLowerCase();
         }
-        return formato;
+
+        return "pdf";
     }
 
     private static Path createSourceDirectory(CommandOutputList list) {
-        String nomeDoDiretorioDosMD = list.getOptionValueByLongName(AvailableOption.DIR);
-        Path diretorioDosMD;
-        if (nomeDoDiretorioDosMD != null) {
-            diretorioDosMD = Paths.get(nomeDoDiretorioDosMD);
-            if (!Files.isDirectory(diretorioDosMD)) {
-                throw new IllegalArgumentException(nomeDoDiretorioDosMD + " não é um diretório.");
-            }
-            return diretorioDosMD;
-        } else {
-            return Paths.get("");
+        CommandOutput commandOutput = list.getOptionValueByLongName(AvailableOption.DIR);
+
+        if (!commandOutput.hasLongNameValue()) {
+            return Paths.get(StringUtils.EMPTY);
         }
+
+        Path dirMDs = commandOutput.getOutputAsPath();
+
+        if (!Files.isDirectory(dirMDs)) {
+            throw new IllegalArgumentException(commandOutput.output() + " não é um diretório.");
+        }
+        return dirMDs;
     }
 }

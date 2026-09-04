@@ -17,12 +17,11 @@ public record CommandOutputList(
         this.outputs.add(commandOutput);
     }
 
-    public String getOptionValueByLongName(AvailableOption option) {
+    public CommandOutput getOptionValueByLongName(AvailableOption option) {
         return outputs.stream()
             .filter(op -> op.option().getLongOption().equals(option.getLongOption()))
             .findFirst()
-            .orElse(new CommandOutput(null, null))
-            .output();
+            .orElse(new CommandOutput(null, null));
     }
 
     public boolean hasOption(AvailableOption option) {
