@@ -1,9 +1,9 @@
 package br.com.unipds.command.domain;
 
+import br.com.unipds.command.options.AvailableOption;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.unipds.command.options.AvailableOption;
 
 public record CommandOutputList(
     List<CommandOutput> outputs

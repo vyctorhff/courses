@@ -1,11 +1,11 @@
 package br.com.unipds.command.domain;
 
+import br.com.unipds.command.options.AvailableOption;
+import org.apache.commons.lang3.StringUtils;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-
-import br.com.unipds.command.options.AvailableOption;
-import org.apache.commons.lang3.StringUtils;
 
 public record CommandOutput(
     AvailableOption option,

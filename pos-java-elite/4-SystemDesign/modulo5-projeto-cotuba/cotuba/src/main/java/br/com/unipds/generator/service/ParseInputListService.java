@@ -1,7 +1,5 @@
 package br.com.unipds.generator.service;
 
-import org.commonmark.node.Node;
-
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;

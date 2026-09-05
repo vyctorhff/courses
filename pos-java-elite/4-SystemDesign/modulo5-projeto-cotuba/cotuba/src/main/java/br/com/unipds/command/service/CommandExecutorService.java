@@ -1,21 +1,15 @@
 package br.com.unipds.command.service;
 
-import java.util.stream.Stream;
-
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-
 import br.com.unipds.command.domain.CommandOutput;
 import br.com.unipds.command.domain.CommandOutputList;
 import br.com.unipds.command.exceptions.CommandExeception;
 import br.com.unipds.command.options.AvailableOption;
 import br.com.unipds.command.options.OptionsFactory;
+import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.stream.Stream;
 
 public class CommandExecutorService {
 
