@@ -31,4 +31,8 @@ public record CommandOutputList(
             .map(op -> op.option().isHasArg())
             .orElse(Boolean.FALSE);
     }
+
+    public boolean hasItems() {
+        return !outputs.isEmpty();
+    }
 }

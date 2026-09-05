@@ -3,7 +3,7 @@ package br.com.unipds;
 import br.com.unipds.command.domain.CommandInputValues;
 import br.com.unipds.command.exceptions.CommandExeception;
 import br.com.unipds.command.options.OptionsFactory;
-import br.com.unipds.command.service.CommandExecutorService;
+import br.com.unipds.command.service.ApacheCommandLineService;
 import br.com.unipds.command.service.CreateInputCommandService;
 import br.com.unipds.generator.domain.FileType;
 import br.com.unipds.generator.service.GeneratorBookFile;
@@ -54,7 +54,7 @@ public class Main {
     }
 
     private static CommandInputValues executeCommand(String[] args) throws CommandExeception {
-        var commandExecutor = new CommandExecutorService(new OptionsFactory());
+        var commandExecutor = new ApacheCommandLineService(new OptionsFactory());
         var commandOutputList = commandExecutor.execute(args);
 
         return new CreateInputCommandService()

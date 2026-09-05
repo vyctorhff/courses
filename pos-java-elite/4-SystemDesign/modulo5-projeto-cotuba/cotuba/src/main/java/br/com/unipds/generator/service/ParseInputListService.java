@@ -1,5 +1,7 @@
 package br.com.unipds.generator.service;
 
+import br.com.unipds.shared.exception.CotubaExeception;
+
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -24,12 +26,12 @@ public class ParseInputListService {
                     .toList();
 
             if (arquivosMD.isEmpty()) {
-                throw new IllegalStateException(FILE_NOT_FOUND + pathSource.toAbsolutePath());
+                throw new CotubaExeception(FILE_NOT_FOUND + pathSource.toAbsolutePath());
             }
 
             arquivosMD.forEach(pathConsumer);
         } catch (IOException ex) {
-            throw new IllegalStateException(ERROR_FINDING_FILES + pathSource.toAbsolutePath(), ex);
+            throw new CotubaExeception(ERROR_FINDING_FILES + pathSource.toAbsolutePath(), ex);
         }
     }
 }

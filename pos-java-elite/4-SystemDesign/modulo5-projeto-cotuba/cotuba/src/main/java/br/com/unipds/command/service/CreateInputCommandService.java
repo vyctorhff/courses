@@ -4,6 +4,7 @@ import br.com.unipds.command.domain.CommandInputValues;
 import br.com.unipds.command.domain.CommandOutput;
 import br.com.unipds.command.domain.CommandOutputList;
 import br.com.unipds.command.options.AvailableOption;
+import br.com.unipds.shared.exception.CotubaExeception;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +15,13 @@ import java.nio.file.Paths;
 
 public class CreateInputCommandService {
 
+    public static final String DEFAULT_TYPE_FORMAT = "pdf";
+
     private final Logger logger = LoggerFactory.getLogger(CreateInputCommandService.class);
 
     public CommandInputValues create(CommandOutputList list) {
-        String fileFormat = createFormart(list);
         boolean verboseMode = list.hasOption(AvailableOption.VERBOSE);
+        String fileFormat = createFormat(list);
 
         Path source = createSourceDirectory(list);
         Path fileName = createFileOutputName(list, fileFormat);
@@ -31,20 +34,20 @@ public class CreateInputCommandService {
         CommandOutput commandOutput = list.getOptionValueByLongName(AvailableOption.OUTPUT);
 
         if (commandOutput.hasLongNameValue()) {
-            return Paths.get(commandOutput.output());
+            return commandOutput.getOutputAsPath();
         }
 
         return Paths.get("book." + format.toLowerCase());
     }
 
-    private static String createFormart(CommandOutputList list) {
+    private static String createFormat(CommandOutputList list) {
         CommandOutput commandOutput = list.getOptionValueByLongName(AvailableOption.FORMAT);
 
         if (commandOutput.hasLongNameValue()) {
             return commandOutput.output().toLowerCase();
         }
 
-        return "pdf";
+        return DEFAULT_TYPE_FORMAT;
     }
 
     private static Path createSourceDirectory(CommandOutputList list) {
@@ -57,8 +60,9 @@ public class CreateInputCommandService {
         Path dirMDs = commandOutput.getOutputAsPath();
 
         if (!Files.isDirectory(dirMDs)) {
-            throw new IllegalArgumentException(commandOutput.output() + " não é um diretório.");
+            throw new CotubaExeception(commandOutput.output() + " não é um diretório.");
         }
+
         return dirMDs;
     }
 }

@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.stream.Stream;
 
-public class CommandExecutorService {
+public class ApacheCommandLineService {
 
-    private final Logger logger = LoggerFactory.getLogger(CommandExecutorService.class);
+    private final Logger logger = LoggerFactory.getLogger(ApacheCommandLineService.class);
 
     private final OptionsFactory factory;
 
-    public CommandExecutorService(OptionsFactory factory) {
+    public ApacheCommandLineService(OptionsFactory factory) {
         this.factory = factory;
     }
 
@@ -39,14 +39,14 @@ public class CommandExecutorService {
         CommandOutputList outputList = CommandOutputList.create();
         Stream.of(AvailableOption.values())
                 .forEach(option -> {
-                    String nomeDoDiretorioDosMD = cmd.getOptionValue(option.getLongOption());
-                    outputList.add(new CommandOutput(option, nomeDoDiretorioDosMD));
+                    String sourceDir = cmd.getOptionValue(option.getLongOption());
+                    outputList.add(new CommandOutput(option, sourceDir));
                 });
         return outputList;
     }
 
     private void printHelp(Options options) {
-        var ajuda = new HelpFormatter();
-        ajuda.printHelp("cotuba", options);
+        new HelpFormatter()
+                .printHelp("cotuba", options);
     }
 }
