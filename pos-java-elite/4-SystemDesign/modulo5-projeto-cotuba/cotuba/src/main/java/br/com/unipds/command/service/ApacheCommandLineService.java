@@ -21,7 +21,7 @@ public class ApacheCommandLineService {
         this.factory = factory;
     }
 
-    public CommandOutputList execute(String[] args) {
+    public CommandOutputList execute(String[] args) throws CommandExeception {
         var options = factory.getOptions();
 
         try {
@@ -35,14 +35,19 @@ public class ApacheCommandLineService {
         }
     }
 
-    private static CommandOutputList createOutputList(CommandLine cmd) {
-        CommandOutputList outputList = CommandOutputList.create();
+    private CommandOutputList createOutputList(CommandLine cmd) {
+        CommandOutputList commandOutputList = CommandOutputList.create();
         Stream.of(AvailableOption.values())
                 .forEach(option -> {
                     String sourceDir = cmd.getOptionValue(option.getLongOption());
-                    outputList.add(new CommandOutput(option, sourceDir));
+                    commandOutputList.add(new CommandOutput(option, sourceDir));
                 });
-        return outputList;
+
+        if (!commandOutputList.hasItems()) {
+            throw new IllegalStateException("Não foram passados parametros");
+        }
+
+        return commandOutputList;
     }
 
     private void printHelp(Options options) {
