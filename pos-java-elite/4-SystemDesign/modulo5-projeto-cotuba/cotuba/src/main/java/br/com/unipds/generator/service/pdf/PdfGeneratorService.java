@@ -6,6 +6,7 @@ import br.com.unipds.generator.exceptions.GeneratorException;
 import br.com.unipds.generator.service.GeneratorBookFile;
 import br.com.unipds.generator.service.HeadingVisitor;
 import br.com.unipds.generator.service.ParseInputListService;
+import br.com.unipds.shared.exception.CotubaExeception;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfOutline;
@@ -57,7 +58,7 @@ public class PdfGeneratorService implements GeneratorBookFile {
             });
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
-            throw new IllegalStateException("Erro ao gerar PDF: " + outputDir.toAbsolutePath(), ex);
+            throw new CotubaExeception("Erro ao gerar PDF: " + outputDir.toAbsolutePath(), ex);
         }
     }
 
@@ -84,7 +85,7 @@ public class PdfGeneratorService implements GeneratorBookFile {
             pdfDocument.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
         } catch (Exception ex) {
-            throw new IllegalStateException("Erro ao renderizar para HTML o arquivo " + arquivoMD, ex);
+            throw new CotubaExeception("Erro ao renderizar para HTML o arquivo " + arquivoMD, ex);
         }
     }
 
@@ -102,7 +103,7 @@ public class PdfGeneratorService implements GeneratorBookFile {
             document = parser.parseReader(Files.newBufferedReader(arquivoMD));
             document.accept(new HeadingVisitor());
         } catch (Exception ex) {
-            throw new IllegalStateException("Erro ao fazer parse do arquivo " + arquivoMD, ex);
+            throw new CotubaExeception("Erro ao fazer parse do arquivo " + arquivoMD, ex);
         }
         return document;
     }

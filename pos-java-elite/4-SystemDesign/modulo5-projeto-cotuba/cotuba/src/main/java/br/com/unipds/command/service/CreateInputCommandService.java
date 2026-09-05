@@ -27,14 +27,14 @@ public class CreateInputCommandService {
         return new CommandInputValues(source, fileFormat, fileName, verboseMode);
     }
 
-    private static Path createFileOutputName(CommandOutputList list, String formato) {
+    private static Path createFileOutputName(CommandOutputList list, String format) {
         CommandOutput commandOutput = list.getOptionValueByLongName(AvailableOption.OUTPUT);
 
         if (commandOutput.hasLongNameValue()) {
             return Paths.get(commandOutput.output());
         }
 
-        return Paths.get("book." + formato.toLowerCase());
+        return Paths.get("book." + format.toLowerCase());
     }
 
     private static String createFormart(CommandOutputList list) {

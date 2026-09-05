@@ -9,6 +9,7 @@ import br.com.unipds.generator.domain.FileType;
 import br.com.unipds.generator.service.GeneratorBookFile;
 import br.com.unipds.generator.service.epub.EpubGeneratorService;
 import br.com.unipds.generator.service.pdf.PdfGeneratorService;
+import br.com.unipds.shared.exception.CotubaExeception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +43,7 @@ public class Main {
             logger.info("Arquivo gerado com sucesso: {}", commandInputValues.outputDir());
             return EXIT_CODE_SUCCESS;
 
-        } catch (Exception ex) {
+        } catch (CotubaExeception ex) {
             System.err.println(ex.getMessage());
 
             if (verbose) {

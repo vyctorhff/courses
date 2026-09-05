@@ -1,5 +1,7 @@
 package br.com.unipds.generator.domain;
 
+import br.com.unipds.shared.exception.CotubaExeception;
+
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -11,6 +13,6 @@ public enum FileType {
                 .filter(fileType -> fileType.name().equals(type.toUpperCase()))
                 .findFirst();
         return fileType1
-                .orElseThrow(() -> new IllegalArgumentException("Formato do ebook inválido: " + type));
+                .orElseThrow(() -> new CotubaExeception("Formato do ebook inválido: " + type));
     }
 }
