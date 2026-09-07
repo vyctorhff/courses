@@ -5,7 +5,7 @@ import org.apache.commons.cli.Options;
 
 import java.util.stream.Stream;
 
-public class OptionsFactory {
+public class ApacheCommadLineOptionsFactory {
     
     public Options getOptions() {
         var options = new Options();

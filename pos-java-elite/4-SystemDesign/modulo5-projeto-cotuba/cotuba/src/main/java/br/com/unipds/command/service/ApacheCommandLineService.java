@@ -4,7 +4,7 @@ import br.com.unipds.command.domain.CommandOutput;
 import br.com.unipds.command.domain.CommandOutputList;
 import br.com.unipds.command.exceptions.CommandExeception;
 import br.com.unipds.command.options.AvailableOption;
-import br.com.unipds.command.options.OptionsFactory;
+import br.com.unipds.command.options.ApacheCommadLineOptionsFactory;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +15,9 @@ public class ApacheCommandLineService {
 
     private final Logger logger = LoggerFactory.getLogger(ApacheCommandLineService.class);
 
-    private final OptionsFactory factory;
+    private final ApacheCommadLineOptionsFactory factory;
 
-    public ApacheCommandLineService(OptionsFactory factory) {
+    public ApacheCommandLineService(ApacheCommadLineOptionsFactory factory) {
         this.factory = factory;
     }
 
@@ -26,6 +26,8 @@ public class ApacheCommandLineService {
 
         try {
             CommandLine cmd = new DefaultParser().parse(options, args);
+            logger.info("Command line options converted");
+
             return createOutputList(cmd);
         } catch (ParseException e) {
             logger.error(e.getMessage());
