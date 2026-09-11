@@ -76,6 +76,11 @@ Escalabilidade é Saúde
 
 AWS
 
+- Apresentação de alguns serviços para desenvolvimento backend
+- Instalação AWS CLI
+	windows command: irm https://awscli.amazonaws.com/v2/install.ps1 | iex
+- Apresentação criação da conta
+
 # Módulo 1 - Aula 11 ------------------------------------------------------------------
 # Módulo 1 - Aula 12 ------------------------------------------------------------------
 # Módulo 1 - Aula 13 ------------------------------------------------------------------
