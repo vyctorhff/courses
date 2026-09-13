@@ -1,9 +1,120 @@
 #####################################################################################################
+Github
+
+https://github.com/unipds-projetos
+
 #####################################################################################################
 #####################################################################################################
 #####################################################################################################
 #####################################################################################################
 #####################################################################################################
+# Banco de Dados
+
+# Módulo 8 - Aula 01 ------------------------------------------------------------------
+
+Formar Normais
+
+- Dependência Funcional
+- Dependência Funcional Parcial
+- Dependência Funcional Transitiva
+- Formas Normais
+
+# Módulo 8 - Aula 02 ------------------------------------------------------------------
+# Módulo 8 - Aula 03 ------------------------------------------------------------------
+# Módulo 8 - Aula 04 ------------------------------------------------------------------
+# Módulo 8 - Aula 05 ------------------------------------------------------------------
+# Módulo 8 - Aula 06 ------------------------------------------------------------------
+
+Flyway e Liquibase
+
+https://github.com/unipds-projetos/modulo8-bancodedados-liquibase
+https://github.com/unipds-projetos/modulo8-bancodedados-flyway
+
+- flyway: usa a estratégia declarativa
+- flyway: arquivo sql e sem rollback
+- liquibase: arquivos yaml, xml, json ou sql formatado; com rollback
+- liquibase: 
+
+# Módulo 8 - Aula 07 ------------------------------------------------------------------
+
+NoSQL
+
+- Relacionas seguem o modelo ACID
+- NoSQL segue o modelo BASE
+	Basically Available
+	Soft State
+	Eventual Consistency
+- Basically Available
+	O sistema garante que sempre haverá uma resposta para qualquer requisição, mesmo que ocorra uma falha parcial em algum servidor ou nó do cluster
+- Soft State
+	O estado dos dados pode mudar ao longo do tempo sem a necessidade de uma interação direta do usuário
+- Eventual Consistency
+	É o cerne do modelo. O sistema garante que, se nenhuma nova atualização for feita, todos os nós distribuídos eventualmente se sincronizarão e alcançarão o mesmo estado idêntico e correto
+- Teorema CAP
+	Um sistema de banco de dados distribuído pode garantir, no máximo, duas de três propriedades desejadas: Consistência(C), Disponibilidade(D) e Tolerância a Partições(P)
+
+	cassanda -> A, P
+	mongo -> C, P
+- Quando usar
+	Modelo de dados muda com frequencia
+	Volume de dados grande e heterogênio
+	Necessidade escalar horizontalmente
+	Mais escrita/leitura do que atualização/delete
+
+# Módulo 8 - Aula 08 ------------------------------------------------------------------
+
+Redis
+
+https://github.com/unipds-projetos/modulo8-bancodedados-redis
+
+- Inserir e recuperar dados rápido; e os dados são descartáveis com o tempo
+- Pode ser usado com PUB/SUB e streams
+
+
+# Módulo 8 - Aula 09 ------------------------------------------------------------------
+
+Mongo
+
+https://github.com/unipds-projetos/modulo8-bancodedados-mongodb
+
+- Pode usar @Query para consultas no mongo
+
+# Módulo 8 - Aula 10 ------------------------------------------------------------------
+
+Cassanda
+
+https://github.com/unipds-projetos/modulo8-bancodedados-cassandra
+
+- Orientado para colunas
+- processar grandes volumes de dados, baixa latência e alta disponibilidade
+- Replicação horizontal
+	Cada dado tem cópia em vários nós
+- qualquer nó pode antender como leitura/escrita
+	Mas não tem consistência imediata, mas com alguns ms segundos depois
+- Modelos de Dados
+	keyspace: agrupamento de tabelas (como um schema)
+	table(column family): conjunto de dados organizados por chave
+	partition: subconjunto de linhas para uma chave da partiçõa
+	row: conjunto de colunas
+	column: nome + valor + timestamp
+- Não há joins
+- CQL (Cassanda SQL)
+- Prática
+- Atenção consultas que filtram colunas com mais de 100k de registros
+	A recomendação é criar outra
+	Estudar melhor depois
+
+# Módulo 8 - Aula 11 ------------------------------------------------------------------
+
+NeoJ4
+
+https://github.com/unipds-projetos/modulo8-bancodedados-neo4j
+
+- Orientados a grafos. Banco vetorial
+- Joins: são as relaões entre cada nó
+- Suporte a transação ACID
+
+
 #####################################################################################################
 # Infra and Clouding 
 
@@ -57,7 +168,7 @@ Kubernates
 
 Kubernate na prática
 
-https://github.com/unipds-projetos/modulo7-cloud-infra-unipdi
+https://github.com/unipds-projetos/modulo7-cloud-infra-unipdi/tree/aula08
 
 - Usando docker desktop com kubernate(kind)
 - Criando pod mualmente
@@ -81,11 +192,50 @@ AWS
 	windows command: irm https://awscli.amazonaws.com/v2/install.ps1 | iex
 - Apresentação criação da conta
 
-# Módulo 1 - Aula 11 ------------------------------------------------------------------
-# Módulo 1 - Aula 12 ------------------------------------------------------------------
+# Módulo 1 - Aula 11, 12 ------------------------------------------------------------------
+
+AWS S3
+
+- Mostrando configurações
+- Mostrando api
+
 # Módulo 1 - Aula 13 ------------------------------------------------------------------
+
+AWS Lambda
+
+https://github.com/unipds-projetos/modulo7-cloud-infra-unipdi/tree/aula13
+
+- Cria lib java para executar
+- Cria a lambda
+- Adicina o jar(fat jar)
+- Adicina gatilho para o S3
+- AWS Parameter Store: adiciona as configurações de email
+	Pesquisar e estudar AWS Secret
+- Conta google: adicionar um senha para aplicação
+	Gerenciar conta google -> segurança -> senhas de app
+- IAM: adicionar permissão para a função conseguir enviar email
+	adicionar: AmazonSSMReadOnlyAccess
+
 # Módulo 1 - Aula 14 ------------------------------------------------------------------
+
+AWS Billing
+Github Actions
+
+https://github.com/jacqueline-oliveira/unipdi/tree/aula14
+
+- adicionando avisos de custos
+- git action: mostrando marketplace para configuração
+	https://github.com/marketplace?type=actions
+- git action: construindo script
+- git actions: secret
+	settings -> secrets and variables -> actions
+- git actions: 
+
 # Módulo 1 - Aula 15 ------------------------------------------------------------------
+
+Jenkins
+
+- Instalação e configuração
 #####################################################################################################
 # Concorrência e Multithreading em Java
 
@@ -125,14 +275,11 @@ Java 7 - Fork/join
 
 Java 8 - Completable Future
 
--  
-
 # Módulo 1 - Aula 07 ------------------------------------------------------------------
 
 Parallel Stream
 
 - Rever!!
-- 
 
 # Módulo 1 - Aula 08 ------------------------------------------------------------------
 
@@ -147,6 +294,8 @@ Prática
 
 #####################################################################################################
 # Software Desgin And System Design
+
+https://github.com/unipds-projetos/modulo5-software-design-system-design
 
 # Módulo 1 - Aula 08 ------------------------------------------------------------------
 
@@ -329,3 +478,9 @@ Entrevista: como resolver problema de flash sale(vendas relâmpago devido promo�
 
 #####################################################################################################
 https://trello.com/b/KmZHipzR/projeto-pratico-unipds-fundamentos-java
+
+
+https://github.com/unipds-projetos/modulo8-bancodedados-flyway
+https://github.com/unipds-projetos/modulo2-backend-quarkus
+https://github.com/unipds-projetos/modulo2-enterprise-ai-java-langchain4j
+https://github.com/unipds-projetos/modulo1-fundamentos-java-desafio-1-encapsulamento
