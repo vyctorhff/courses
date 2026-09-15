@@ -51,9 +51,40 @@ PMD
 	mvn site
 - Tem um plugin do PMD para intelliJ
 
-# Módulo 9 - Módulo 5 - Aula 05 ----------------------------------------------------------------
+# Módulo 9 - Módulo 5 ----------------------------------------------------------------
 
+Prática com testes
 
+- Anotações importantes do spring. Apenas usar quando necessário
+	@SpringBootTest -> testes de integração
+	@AutoConfigureMockMvc -> testes controller com mock
+	@DataJpaTest -> testes com banco
+- @DataJpaTest
+	https://github.com/unipds-projetos/modulo9-payment-system-part-5 - PaymentsDatabaseIntegrationTest.java
+- @DataJpaTest: só teste métodos do repository customizados; não testes save, findById, findDateBetween, delete etc
+
+# Módulo 9 - Módulo 6 ----------------------------------------------------------------
+
+Test Containers
+
+Prática
+Atenção !!!!!!!
+Código não foi enviado. Pegar na aula 
+
+- Sem o @ActiveProfile do spring, é necessário criar um container por caso de teste
+	Isso irá recriar o container, isso causará lentidão nos testes
+- Usar a definição no application-{profile}.yml para todos os testes
+
+# Módulo 9 - Módulo 7 ----------------------------------------------------------------
+
+Sonar
+
+- Complexidade ciclomática
+	Número de caminhos independentes em um método
+	Cada caminho é um número de complexidade
+- Code smell
+- Duplicação
+- Jacoco: sonar coleta os dados do jacoco
 
 #####################################################################################################
 # Banco de Dados
