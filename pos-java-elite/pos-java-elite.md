@@ -7,6 +7,54 @@ https://github.com/unipds-projetos
 #####################################################################################################
 #####################################################################################################
 #####################################################################################################
+# Testes
+
+# Módulo 9 - Aula 01 - ?? ------------------------------------------------------------------
+
+Junit
+TDD
+Mockito
+AssertJ
+
+# Módulo 9 - Módulo 4 - Aula 01 ----------------------------------------------------------------
+
+SpotBugs/PMD
+
+- Analisador de código estático
+- Analisam o código procurando por más práticas, descuidos de código e outros
+
+# Módulo 9 - Módulo 4 - Aula 02,03,04 ----------------------------------------------------------------
+
+SpotBugs
+
+- Analisa o bytecode
+- tem mais de 400 padrões de bugs
+- maven plugin: spotbugs-maven-plugiin
+	mvn spotbugs:spotbugs
+	mvn spotbugs:check
+	mvn spotbugs:gui
+- Gera um arquivo spotbugsXml.xml
+- No Gui exibe bem os problemas
+- Pode executar o maven site para mostrar os relatórios
+	mvn site
+
+# Módulo 9 - Módulo 4 - Aula 05 ----------------------------------------------------------------
+
+PMD
+
+- Analisa o código .java
+- Atua bem em conjuto com o spotbug
+- Analisa código morto, empty catch, repetições etc
+- maven plugin
+	mvn pmd:check
+- O relatório aparece no mvn site
+	mvn site
+- Tem um plugin do PMD para intelliJ
+
+# Módulo 9 - Módulo 5 - Aula 05 ----------------------------------------------------------------
+
+
+
 #####################################################################################################
 # Banco de Dados
 
@@ -113,6 +161,7 @@ https://github.com/unipds-projetos/modulo8-bancodedados-neo4j
 - Orientados a grafos. Banco vetorial
 - Joins: são as relaões entre cada nó
 - Suporte a transação ACID
+- 
 
 
 #####################################################################################################
