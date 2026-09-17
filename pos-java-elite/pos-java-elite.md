@@ -73,6 +73,30 @@ Social Selling Index
 
 Certificação e Badges
 
+Melhorando Github
+
+- Organizar o readme.md do projeto 
+- Não é só uma plataforma de código, mas também de marketing
+
+Social Selling Index
+
+- É a estatística que mostra o quanto o seu linkedin é relevante
+- É bom está perto de 70
+- Não tem problema passar alguns meses sem entrar, mas não deixe muito tempo
+- Analisar as barras de estatística
+	Trocar foto ajuda a aumentar
+	Melhorar ou alterar sutilmente os dados cadastratuais e descrições
+- Pesquisar por Tech Recruiter ou Talent Acquisition Specialist
+	Fazendo conexões com recrutadores
+- Só em pesquisar por recrutadores e se conectar já aumenta a barrinha
+- Tentar conversar mais pelo chat do linkedin porque assim aumenta o 
+- A atualização do SSI demora um pouco, então não desanime de estar fazendo
+	as ações e não estiver aumentando. Continue
+
+# Módulo 10 - Modulo 3 ------------------------------------------------------------------
+
+Certificação e Badges
+
 - Só coloque certificação com o  certificado
 - Badges: são 'medalhas' para colocar no perfil
 	Pode ser obtida na conclusão de certificados: udemy, alura etc
