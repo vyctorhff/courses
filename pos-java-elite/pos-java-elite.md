@@ -26,13 +26,76 @@ Anatomia o perfil perfeito no linkedin
 - About: adicionar conquista(ganhos reais do trablalho)
 - Método star
 	s -> situação
-	t -> task
-	a -> action
+	t -> task(como foi feito)
+	a -> action(como foi feito; usar task ou action na hora de falar)
 	r -> results
+- Método star: ajuda a organizar na hora de explicar algo
+- Método star: o mais importante é R
+- Evitar
+	Muitas liguagens diferentes
+	dá a ideia que não é especialista
+	Não colocar estágio: colocar contratos por tempo ou até junior
+- O que tem que ter
+	Linguagem e framework principal
+	AWS <- mais procurado com java
+	docker & kubernates
+	frontend <- mais vagas para React
+- Como não ser eliminado
+	Contact info no linkedin
+		Vagas fora valorizam o número de telefone
+	Job Preferences
+		Coloque várias países
+		Job Title
+			Coloque alguns cargos possíveis:
+				Software enginer, Java Developer, Tech leader
+				Integrate Tester
+- Artigos e Newsletters
+	Ver prints
 
-# Módulo 10 - Modulo 0 ------------------------------------------------------------------
-# Módulo 10 - Modulo 0 ------------------------------------------------------------------
+# Módulo 10 - Modulo 02 ------------------------------------------------------------------
 
+Social Selling Index
+
+- É a estatística que mostra o quanto o seu linkedin é relevante
+- É bom está perto de 70
+- Não tem problema passar alguns meses sem entrar, mas não deixe muito tempo
+- Analisar as barras de estatística
+	Trocar foto ajuda a aumentar
+	Melhorar ou alterar sutilmente os dados cadastratuais e descrições
+- Pesquisar por Tech Recruiter ou Talent Acquisition Specialist
+	Fazendo conexões com recrutadores
+- Só em pesquisar por recrutadores e se conectar já aumenta a barrinha
+- Tentar conversar mais pelo chat do linkedin porque assim aumenta o 
+- A atualização do SSI demora um pouco, então não desanime de estar fazendo
+	as ações e não estiver aumentando. Continue
+
+# Módulo 10 - Modulo 3 ------------------------------------------------------------------
+
+Certificação e Badges
+
+- Só coloque certificação com o  certificado
+- Badges: são 'medalhas' para colocar no perfil
+	Pode ser obtida na conclusão de certificados: udemy, alura etc
+- Faça os testes do linkedin
+	Ver prints
+
+Melhorando Github
+
+- Organizar o readme.md do projeto 
+- Não é só uma plataforma de código, mas também de marketing
+
+# Módulo 10 - Modulo 4 ------------------------------------------------------------------
+
+Falando com o recrutador: Inmails e abordagens
+  
+- Mensagem curta
+	software engineer backend, especialista java(spring e quarkus)
+	tempo de experiência;
+	caso sucesso;
+	linguagem principal;
+	cloud;
+	mercado que mais atuou
+- 
 #####################################################################################################
 # Testes
 
