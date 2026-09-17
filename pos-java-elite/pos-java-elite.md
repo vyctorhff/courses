@@ -6,6 +6,33 @@ https://github.com/unipds-projetos
 #####################################################################################################
 #####################################################################################################
 #####################################################################################################
+# Marketing Pessoal
+
+# Módulo 10 - Modulo 01 ------------------------------------------------------------------
+
+- Pilares
+	Visibilidade
+	Autoridade
+	Conexão
+- Não entra da vaga aquele que sabe mais, mas sim aquele que sabe se vender mais
+
+# Módulo 10 - Modulo 01 ------------------------------------------------------------------
+
+Anatomia o perfil perfeito no linkedin
+
+- Redline: bem limpa e com tecnologias base (não todas)
+- About: print do exemplo
+- About: todas as palavras chaves
+- About: adicionar conquista(ganhos reais do trablalho)
+- Método star
+	s -> situação
+	t -> task
+	a -> action
+	r -> results
+
+# Módulo 10 - Modulo 0 ------------------------------------------------------------------
+# Módulo 10 - Modulo 0 ------------------------------------------------------------------
+
 #####################################################################################################
 # Testes
 
@@ -85,6 +112,37 @@ Sonar
 - Code smell
 - Duplicação
 - Jacoco: sonar coleta os dados do jacoco
+- Existe uma versão do sonar communty pelo docker
+
+# Módulo 9 - Módulo 8 ----------------------------------------------------------------
+
+Data Driven
+
+- É a variação dos dados do teste sem alterar o testes
+	@Parameter... do junit
+- DataFaker: gerador de 
+	domínio: nomes, email, cpf etc
+	suporte a idiomas
+	arquivos csv, json, xml etc
+- DataFaker:
+	Faker faker = new Faker(new Locale("pt-BR"));
+	faker.name().fullname(); -> gera um nome
+	faker.address().fullAdress();
+	fakse.cpf()
+	faker.credentials().username()
+
+- Test Data Factory
+	Seria uma classe como o Fixture
+	Padrão java que cria outros objetos para os testes
+
+# Módulo 9 - Módulo 9 ----------------------------------------------------------------
+
+ArchUnit
+
+- Garantir que a camadas arquiteturas estão sendo respeitadas
+- Dá para criar regras para o Nome final de classe como ...Entity, ...Service
+- regras para qual pacotes pode ser chamados por outro pacote
+
 
 #####################################################################################################
 # Banco de Dados
